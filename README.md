@@ -2,6 +2,9 @@
 
 <h2>👨‍💻 Cybersecurity Projects:</h2>
 
+- <b>k8s-secure-secrets-lab </b>
+  - [k8s-secure-secrets-lab](https://github.com/AaronGrillot98/k8s-secure-secrets-lab)
+
 - <b>Active Directory Home Lab </b>
   - [Active Directory Home Lab](https://github.com/AaronGrillot98)
 
