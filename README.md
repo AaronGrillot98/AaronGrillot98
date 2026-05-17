@@ -1,21 +1,53 @@
 # Hi, I'm Aaron 👋
 
-**DevSecOps · Cloud Security · Aerospace Systems**
+**DevSecOps · Cloud Security · AI Security · Aerospace Systems**
 
 I build security-focused projects that cover the full lifecycle: **prevent → detect → analyze → understand impact**. My aviation maintenance background gives me a systems-and-safety lens on cybersecurity — I think about how things fail in the real world, not just whether a tool runs green.
 
-📍 Available for full-time DevSecOps / Cloud Security / Defense / forward-deployed Tech Ops roles
+📍 Available for full-time DevSecOps / Cloud Security / AI Security / Defense / forward-deployed Tech Ops roles
 🔗 [LinkedIn](https://linkedin.com/in/aarongrillot)
 
 ---
 
 ## 🎯 Focus areas
 
+- **AI / LLM security** — prompt-injection / jailbreak detection, two-stage defense pipelines (regex + LLM-judge), output-side PII redaction, OpenAI-compatible proxies, integrations with LangChain / LiteLLM / FastAPI
 - **DevSecOps & CI/CD security** — Sigstore keyless signing, SLSA Build provenance, signed SBOMs, OIDC-only deploys, fail-closed scanners
 - **Cloud security** — AWS hardening (IAM least privilege, S3 BucketOwnerEnforced + SecureTransport deny, CloudFront OAC), Terraform IaC, runtime hardening (PSS-restricted Kubernetes)
 - **Compliance literacy** — NIST SP 800-53 Rev. 5, NIST SP 800-171 Rev. 2 / CMMC 2.0 L2, NIST SSDF v1.1, SLSA v1.0
 - **Forward-deployed / DDIL** — single static Go binaries, atomic-swap installs, cryptographic update verification, intermittent-connectivity tolerance
 - **Aerospace cyber risk** — mapping cyber threats to operational impact on maintenance, inventory, scheduling, and ground systems
+
+---
+
+## ⚒️ Featured: Mithril — a firewall for LLMs
+
+<a href="https://github.com/AaronGrillot98/mithril">
+  <img src="https://raw.githubusercontent.com/AaronGrillot98/mithril/main/docs/banner.png" alt="Mithril — a firewall for LLMs" />
+</a>
+
+[![PyPI](https://img.shields.io/pypi/v/mithril-llm?logo=pypi&logoColor=white&label=pypi&color=4c83cf)](https://pypi.org/project/mithril-llm/)
+[![Downloads](https://img.shields.io/pypi/dm/mithril-llm?color=4c83cf)](https://pypi.org/project/mithril-llm/)
+[![CI](https://github.com/AaronGrillot98/mithril/actions/workflows/ci.yml/badge.svg)](https://github.com/AaronGrillot98/mithril/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-167%20passing-brightgreen.svg)](https://github.com/AaronGrillot98/mithril#validation)
+[![Coverage](https://img.shields.io/badge/coverage-88%25-brightgreen.svg)](https://github.com/AaronGrillot98/mithril#validation)
+[![JailbreakBench](https://img.shields.io/badge/JailbreakBench-100%25-brightgreen.svg)](https://github.com/AaronGrillot98/mithril#benchmarks)
+
+**Self-hosted OpenAI-compatible reverse proxy that scans LLM traffic in both directions.** Stops prompt injection, jailbreaks, and PII exfiltration at the gateway — *what nginx is to web traffic, Mithril is to LLM prompts.*
+
+- ✅ **100% recall / 100% precision** on the [JailbreakBench](https://jailbreakbench.github.io/) corpus (NeurIPS 2024) with the harmful behaviors wrapped in real-world jailbreak frames
+- ✅ **Bi-directional firewall** — scans user prompts (attack technique) AND model responses (PII / secret / credential leakage). Block / redact / log modes on the output side
+- ✅ **Two-stage defense** — sub-millisecond regex pipeline + optional LLM-judge fallback for the ambiguous middle (~5% of traffic). Works with OpenAI, Anthropic, Ollama, vLLM, llama.cpp — fully air-gapped if you want
+- ✅ **Drop-in integrations** for LangChain, LiteLLM, FastAPI — one import line firewalls your existing stack
+- ✅ **167 tests · 88% coverage · ruff clean**, automated PyPI + GHCR multi-arch publish on every tag, six green install paths (pip / docker / docker-compose / one-line shell / source)
+
+```bash
+pip install mithril-llm
+mithril serve
+# → http://localhost:8080  (dashboard at /)
+```
+
+Built end-to-end: regex rule engine, async judge with HTTP error handling, FastAPI proxy with body-size + header-leak protections, SQLite event log with async wrappers, request-ID correlation middleware, three framework integration packages, JailbreakBench evaluation harness, and a Mithril-themed dashboard.
 
 ---
 
@@ -96,6 +128,7 @@ Multi-scanner SARIF consolidator. Reads **Bandit + Semgrep + Trivy + gitleaks + 
 - **Focus on *why* systems fail**, not only what tools detect
 - **Compliance-literate without being compliance-only** — I read NIST controls and trace them to specific files; I don't paste them as wallpaper
 - **Polyglot, deliberately** — Python for tooling and CI, Go for forward-deployed agents, Terraform/HCL for cloud infra, JSON Schema / SARIF for interop
+- **Ship, don't just prototype** — Mithril is published on PyPI and GHCR, TalonEdge's SLSA chain runs in CI on every push, sarif-merge is wired live into a real Security CI
 
 ---
 
